@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon Hybrid Recommender</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-store"></i> Amazon Product Recommender</h1>
+            <div class="search-container">
+                <i class="fas fa-search search-icon"></i>
+                <input id="search" placeholder="Cari produk...">
+            </div>
+        </header>
+
+        <main>
+            <div id="results-container">
+                <h2>Hasil Pencarian</h2>
+                <div id="results"></div>
+            </div>
+            <div id="recommendations-container">
+                <h2>Rekomendasi Untuk Anda</h2>
+                <div id="recommendations">
+                    <p class="placeholder">Pilih produk dari hasil pencarian untuk melihat rekomendasi.</p>
+                </div>
+                <div id="loading" class="hidden">
+                    <div class="spinner"></div>
+                    <p>Mencari rekomendasi...</p>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
+</body>
+</html>
