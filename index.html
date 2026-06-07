@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="E-commerce recommender system project by dans-real">
+  <title>e-commerce</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --panel: rgba(15, 23, 42, 0.72);
+      --panel-strong: #111827;
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+      --accent: #f59e0b;
+      --accent-2: #38bdf8;
+      --border: rgba(148, 163, 184, 0.2);
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(56, 189, 248, 0.24), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(245, 158, 11, 0.20), transparent 26%),
+        linear-gradient(135deg, #020617 0%, #0f172a 55%, #111827 100%);
+    }
+
+    .wrap {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 56px 0 72px;
+    }
+
+    .hero {
+      display: grid;
+      gap: 24px;
+      grid-template-columns: 1.4fr 1fr;
+      align-items: stretch;
+    }
+
+    .panel {
+      border: 1px solid var(--border);
+      background: var(--panel);
+      backdrop-filter: blur(18px);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .content {
+      padding: 36px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(245, 158, 11, 0.12);
+      color: #fde68a;
+      border: 1px solid rgba(245, 158, 11, 0.18);
+      font-size: 0.9rem;
+      letter-spacing: 0.02em;
+    }
+
+    h1 {
+      margin: 18px 0 14px;
+      font-size: clamp(2.5rem, 5vw, 4.8rem);
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+    }
+
+    .lead {
+      margin: 0;
+      max-width: 60ch;
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 18px;
+      border-radius: 14px;
+      text-decoration: none;
+      font-weight: 700;
+      border: 1px solid transparent;
+      transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary {
+      color: #111827;
+      background: linear-gradient(135deg, #fde68a 0%, #f59e0b 100%);
+    }
+
+    .btn-secondary {
+      color: var(--text);
+      background: rgba(15, 23, 42, 0.4);
+      border-color: var(--border);
+    }
+
+    .grid {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      padding: 18px;
+    }
+
+    .card {
+      padding: 18px;
+      border-radius: 20px;
+      background: rgba(17, 24, 39, 0.78);
+      border: 1px solid rgba(148, 163, 184, 0.12);
+      min-height: 160px;
+    }
+
+    .card h2 {
+      margin: 0 0 8px;
+      font-size: 1rem;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+
+    .full {
+      grid-column: 1 / -1;
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.16), rgba(245, 158, 11, 0.16));
+    }
+
+    .meta {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      margin-top: 16px;
+    }
+
+    .stat {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(2, 6, 23, 0.45);
+      border: 1px solid rgba(148, 163, 184, 0.12);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.1rem;
+      margin-bottom: 4px;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .footer {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .grid, .meta { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="hero">
+      <div class="panel content">
+        <span class="eyebrow">E-commerce Recommender System</span>
+        <h1>Hybrid Text Mining untuk Rekomendasi Produk</h1>
+        <p class="lead">
+          Repository ini berisi proyek Flask + machine learning untuk rekomendasi produk Amazon.
+          GitHub Pages hanya menampilkan halaman statis, jadi halaman ini dibuat sebagai landing page
+          agar repo tetap memiliki tampilan yang jelas saat dibuka dari web.
+        </p>
+        <div class="actions">
+          <a class="btn btn-primary" href="https://github.com/dans-real/e-commerce" target="_blank" rel="noopener">Buka Repo GitHub</a>
+          <a class="btn btn-secondary" href="README.md">Lihat README</a>
+        </div>
+        <div class="meta">
+          <div class="stat">
+            <strong>Backend</strong>
+            <span>Flask + Python</span>
+          </div>
+          <div class="stat">
+            <strong>Model</strong>
+            <span>Hybrid Recommender</span>
+          </div>
+        </div>
+        <p class="footer">Untuk menjalankan aplikasi penuh, clone repo lalu jalankan <em>app.py</em> secara lokal.</p>
+      </div>
+
+      <div class="panel grid">
+        <div class="card full">
+          <h2>Apa yang ada di proyek ini?</h2>
+          <p>
+            Dataset produk Amazon, notebook analisis hybrid recommender, aplikasi Flask untuk pencarian dan rekomendasi,
+            serta front-end modern dengan tampilan responsif.
+          </p>
+        </div>
+        <div class="card">
+          <h2>Content-Based</h2>
+          <p>TF-IDF pada konten produk dan review untuk menangkap kemiripan berbasis teks.</p>
+        </div>
+        <div class="card">
+          <h2>Collaborative Filtering</h2>
+          <p>Item-based similarity dari pola rating user untuk menangkap perilaku kolektif.</p>
+        </div>
+        <div class="card full">
+          <h2>Catatan GitHub Pages</h2>
+          <p>
+            GitHub Pages tidak mengeksekusi Flask. Jadi yang bisa ditampilkan di sini hanya halaman statis.
+            Jika ingin aplikasi interaktif penuh, gunakan hosting backend seperti Render, Railway, atau Azure App Service.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
