@@ -1,19 +1,28 @@
-﻿# e-commerce
+﻿# Amazon Hybrid Recommender
 
-## Deployment
+Cara menjalankan secara lokal:
 
-Proyek ini bisa dijalankan secara lokal dengan:
+1. Pasang dependensi:
+
+```powershell
+cd "d:\Programming\Text Mining\e_commerce"
+c:/python314/python.exe -m pip install -r requirements.txt
+```
+
+2. Jalankan development server (Windows):
 
 ```powershell
 c:/python314/python.exe app.py
+# buka http://127.0.0.1:5000
 ```
 
-Untuk online deployment, gunakan Render:
+3. Untuk deployment (Render / Railway / Heroku):
 
-1. Push repository ke GitHub.
-2. Buat Web Service baru di Render dan hubungkan ke repo ini.
-3. Render akan membaca `render.yaml` atau gunakan:
-	- Build Command: `pip install -r requirements.txt`
-	- Start Command: `gunicorn app:app`
+- Pastikan `wsgi.py` dan `Procfile` ada.
+- Gunakan command start `gunicorn wsgi:application --workers 2 --bind 0.0.0.0:$PORT`.
+- Tambahkan `gunicorn` ke `requirements.txt` (sudah ditambahkan).
 
-GitHub Pages hanya menampilkan [index.html](index.html) statis di root repository. Aplikasi Flask penuh harus dijalankan lewat hosting backend seperti Render.
+Catatan:
+- Di Windows, `gunicorn` tidak direkomendasikan; gunakan `waitress` atau jalankan melalui hosting Linux.
+- GitHub Pages hanya melayani file statis; untuk demo interaktif, deploy Flask ke Render/Railway.
+# e-commerce
